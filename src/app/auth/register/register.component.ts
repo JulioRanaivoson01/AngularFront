@@ -1,12 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  imports:[ReactiveFormsModule],
+  imports:[ReactiveFormsModule, CommonModule],
   standalone:true
 })
 export class RegisterComponent {
@@ -17,6 +16,9 @@ export class RegisterComponent {
     password: new FormControl('')
   })
 
-  onSubmit() {
+  registerUser() {
+    const data = this.form.value;
+    console.log(data);
+
   }
 }

@@ -10,13 +10,14 @@
 
 <div class="register-container">
   <h2>Inscription</h2>
-  <form>
+  <form [formGroup]="form" (submit)="registerUser()">
       <div>
         <label for="username">Nom d'utilisateur</label>
         <input
           type="text"
           id="username"
           name="username"
+          formControlName="username"
           required
         />
       </div>
@@ -26,6 +27,7 @@
           type="email"
           id="email"
           name="email"
+          formControlName="email"
           required
         />
       </div>
@@ -35,6 +37,7 @@
           type="password"
           id="password"
           name="password"
+          formControlName="password"
           required
         />
       </div>
