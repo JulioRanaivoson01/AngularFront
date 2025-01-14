@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscription</title>
+  <style>
+    /* Général : réinitialisation des marges et des paddings */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Corps de la page */
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+      padding: 20px;
+    }
+
+    /* En-tête */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+    }
+
+    header nav ul {
+      list-style-type: none;
+      text-align: center;
+    }
+
+    header nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+
+    header nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    header nav ul li a:hover {
+      color: #ff6347;
+    }
+
+    /* Conteneur principal du formulaire */
+    .register-container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .register-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Styles des formulaires */
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* Styles pour les petits écrans */
+    @media (max-width: 768px) {
+      header nav ul li {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">A Propos</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="register-container">
+    <h2>Inscription</h2>
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+        <div>
+          <label for="username">Nom d'utilisateur</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            [(ngModel)]="user.username"
+            required
+          />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="user.email"
+            required
+          />
+        </div>
+        <div>
+          <label for="password">Mot de passe</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            [(ngModel)]="user.password"
+            required
+          />
+        </div>
+        <button type="submit" [disabled]="!registerForm.form.valid">S'inscrire</button>
+      </form>
+      
+  </div>
+
+  <script>
+    class RegisterComponent {
+      // Cette méthode sera appelée lors de la soumission du formulaire
+      onSubmit() {
+        // Logique pour soumettre les données (par exemple, appel à un service pour l'inscription)
+        console.log("Formulaire soumis !");
+      }
+    }
+  </script>
+</body>
+
+</html>
