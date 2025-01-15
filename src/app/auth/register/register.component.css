@@ -84,3 +84,12 @@ button:hover {
     margin: 10px 0;
   }
 }
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+button:disabled {
+  background-color: gray;
+}
+

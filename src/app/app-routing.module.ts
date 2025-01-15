@@ -4,10 +4,10 @@ import { TaskListComponent } from './task-list/task-list.component';
 import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
-  { path: '', component: TaskListComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },  // Redirection vers la page de login par défaut
   { path: 'login', component: RegisterComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: 'tasks', component: TaskListComponent }  // Route pour la liste des tâches
 ];
 
 @NgModule({

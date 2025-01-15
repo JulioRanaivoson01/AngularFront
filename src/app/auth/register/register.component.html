@@ -11,37 +11,50 @@
 <div class="register-container">
   <h2>Inscription</h2>
   <form [formGroup]="form" (submit)="registerUser()">
-      <div>
-        <label for="username">Nom d'utilisateur</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          formControlName="username"
-          required
-        />
+    <div>
+      <label for="username">Nom d'utilisateur</label>
+      <input type="text" id="username" formControlName="username" required />
+      <div
+        class="error"
+        [style.visibility]="usernameInvalid ? 'visible' : 'hidden'"
+      >
+        <small>Nom d'utilisateur requis</small>
       </div>
-      <div>
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          formControlName="email"
-          required
-        />
-      </div>
-      <div>
-        <label for="password">Mot de passe</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          formControlName="password"
-          required
-        />
-      </div>
-      <button type="submit">S'inscrire</button>
-    </form>
+    </div>
 
+    <div>
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" required />
+      <div
+        class="error"
+        [style.visibility]="emailInvalid ? 'visible' : 'hidden'"
+      >
+        <small *ngIf="form.get('email')?.hasError('required')">Email requis</small>
+        <small *ngIf="form.get('email')?.hasError('email')">Email invalide</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="password">Mot de passe</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        required
+      />
+      <div
+        class="error"
+        [style.visibility]="passwordInvalid ? 'visible' : 'hidden'"
+      >
+        <small *ngIf="form.get('password')?.hasError('required')">Mot de passe requis</small>
+        <small
+          *ngIf="form.get('password')?.hasError('minlength')"
+        >
+          Le mot de passe doit faire au moins 6 caractères
+        </small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">S'inscrire</button>
+  </form>
 </div>
