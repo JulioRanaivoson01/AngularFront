@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+import { catchError, EMPTY, take, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -20,23 +21,27 @@ export class RegisterComponent {
   });
 
   // Injection des services nécessaires
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   // Méthode pour enregistrer l'utilisateur
   registerUser() {
     const user = this.form.value;
 
-    this.http.post('http://localhost:8080/api/register', user)
-      .subscribe({
-        next: (response) => {
-          console.log('Utilisateur enregistré avec succès:', response);
-          // Redirection vers la page de connexion
-          this.router.navigate(['/login']);
-        },
-        error: (error) => {
-          console.error('Erreur lors de l\'enregistrement de l\'utilisateur:', error);
-        }
-      });
+    this.authService.registerUser({
+      username: user.username!,
+      email: user.password!,
+      password: user.password!
+    }).pipe(
+      take(1),
+      catchError(_=>{
+        console.log("An error occured");
+
+        return EMPTY
+      }),
+      tap(_=>{
+        this.router.navigate(["/login"])
+      })
+    ).subscribe()
   }
 
   // Getters pour vérifier les erreurs de validation
