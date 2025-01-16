@@ -7,10 +7,16 @@ import { User } from '../models/auth.model';
   providedIn: 'root',
 })
 export class AuthService {
+  private apiUrl = environment.apiUrl; // Utilisez la configuration du fichier d'environnement
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  registerUser(user: User){
-    return this.http.post(environment.apiUrl + "/api/register", user)
+  /**
+   * Enregistre un nouvel utilisateur.
+   * @param user Les informations de l'utilisateur.
+   * @returns Un Observable contenant la réponse du backend.
+   */
+  registerUser(user: User) {
+    return this.http.post(`${this.apiUrl}/register`, user); // Concaténation avec la route spécifique
   }
 }

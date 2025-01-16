@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/auth.model'
 import { catchError, EMPTY, take, takeUntil, tap } from 'rxjs';
 
 @Component({
