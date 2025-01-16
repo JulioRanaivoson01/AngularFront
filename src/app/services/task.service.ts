@@ -7,7 +7,7 @@ import { Task } from '../models/task.model';  // Assure-toi d'importer l'interfa
   providedIn: 'root'
 })
 export class TaskService {
-  private baseUrl = 'http://localhost:8080/api/tasks';  // URL de ton backend
+  private baseUrl = 'http://localhost:9090/api/user/register';  // URL de ton backend
 
   constructor(private http: HttpClient) {}
 

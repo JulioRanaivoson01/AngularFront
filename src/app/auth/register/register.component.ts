@@ -14,38 +14,36 @@ import { catchError, EMPTY, take, takeUntil, tap } from 'rxjs';
   imports: [ReactiveFormsModule, CommonModule],
 })
 export class RegisterComponent {
-  // Définition du formulaire
   form = new FormGroup({
     username: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
-  // Injection des services nécessaires
+  apiError = false;  // Pour gérer l'affichage des erreurs de l'API
+
   constructor(private router: Router, private authService: AuthService) {}
 
-  // Méthode pour enregistrer l'utilisateur
   registerUser() {
     const user = this.form.value;
 
     this.authService.registerUser({
       username: user.username!,
-      email: user.password!,
+      email: user.email!,
       password: user.password!
     }).pipe(
       take(1),
-      catchError(_=>{
-        console.log("An error occured");
-
-        return EMPTY
+      catchError(error => {
+        console.error("API Error:", error);
+        this.apiError = true;  // Afficher l'erreur
+        return EMPTY;
       }),
-      tap(_=>{
-        this.router.navigate(["/login"])
+      tap(_ => {
+        this.router.navigateByUrl("/login");  // Rediriger vers la page de connexion
       })
-    ).subscribe()
+    ).subscribe();
   }
 
-  // Getters pour vérifier les erreurs de validation
   get usernameInvalid() {
     return this.form.get('username')?.invalid && this.form.get('username')?.touched;
   }

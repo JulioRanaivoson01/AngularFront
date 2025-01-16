@@ -1,0 +1,43 @@
+<!-- home.component.html -->
+<div class="home-container">
+    <h1>Bienvenue dans votre tableau de gestion de projets</h1>
+  
+    <!-- Section pour afficher les projets -->
+    <div class="projects">
+      <div class="project-card" *ngIf="projects.length > 0">
+        <h3>{{ projects[0].name }}</h3>
+        <div class="project-tasks">
+          <!-- Colonnes des tâches : A faire, En cours, Terminé -->
+          <div class="task-column">
+            <h4>À faire</h4>
+            <!-- Remplacer par des tâches réelles en JS -->
+            <div class="task-card">
+              <p>Task 1</p>
+              <button>Modifier</button>
+              <button>Supprimer</button>
+            </div>
+          </div>
+  
+          <div class="task-column">
+            <h4>En cours</h4>
+            <div class="task-card">
+              <p>Task 2</p>
+              <button>Modifier</button>
+              <button>Supprimer</button>
+            </div>
+          </div>
+  
+          <div class="task-column">
+            <h4>Terminé</h4>
+            <div class="task-card">
+              <p>Task 3</p>
+              <button>Modifier</button>
+              <button>Supprimer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button>Créer un nouveau projet</button>
+    </div>
+  </div>
+  

@@ -1,0 +1,18 @@
+<div class="login-container">
+    <form (ngSubmit)="onSubmit()">
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" [(ngModel)]="email" required email>
+        <div *ngIf="!email && email?.touched">L'email est requis et doit être valide.</div>
+      </div>
+  
+      <div>
+        <label for="password">Mot de passe</label>
+        <input id="password" name="password" type="password" [(ngModel)]="password" required>
+        <div *ngIf="!password && password?.touched">Le mot de passe est requis.</div>
+      </div>
+  
+      <button type="submit" [disabled]="!email || !password">Se connecter</button>
+    </form>
+  </div>
+  
