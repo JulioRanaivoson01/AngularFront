@@ -8,7 +8,8 @@ import { Task } from '../models/task.model';
 })
 export class TaskService {
   private baseUrl = 'http://localhost:9090/api/user/register';
-
+  //mb regleo kely le bouton ajout task
+  //de mb omeo proposition anle fonctionaliter rh misy conseille kely
   constructor(private http: HttpClient) {}
 
 
