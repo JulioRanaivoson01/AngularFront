@@ -1,34 +1,45 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Task } from '../models/task.model';
-import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  private baseUrl = 'http://localhost:9090/api/user/register';
-  //mb regleo kely le bouton ajout task
-  //de mb omeo proposition anle fonctionaliter rh misy conseille kely
+  private apiUrl = 'http://localhost:9090/api/tasks';
+
   constructor(private http: HttpClient) {}
 
-
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.baseUrl}/tasks`);
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
   }
 
-
-  createTask(task: Task): Observable<Task> {
-    return this.http.post<Task>(`${this.baseUrl}/create-task`, task);
+  createTask(projectId: string, task: any): Observable<any> {
+    const url = `${this.apiUrl}/project/${projectId}`;
+    return this.http.post<any>(url, task, { headers: this.getHeaders() });
   }
 
-
-  updateTask(id: string, task: Task): Observable<Task> {
-    return this.http.put<Task>(`${this.baseUrl}/task/${id}`, task);
+  getTasksByProject(projectId: string): Observable<any[]> {
+    const url = `${this.apiUrl}/project/${projectId}`;
+    return this.http.get<any[]>(url, { headers: this.getHeaders() });
   }
 
-  deleteTask(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/task/${id}`);
+  getTaskById(taskId: string): Observable<any> {
+    const url = `${this.apiUrl}/${taskId}`;
+    return this.http.get<any>(url, { headers: this.getHeaders() });
+  }
+
+  updateTask(taskId: string, task: any): Observable<any> {
+    const url = `${this.apiUrl}/${taskId}`;
+    return this.http.patch<any>(url, task, { headers: this.getHeaders() });
+  }
+
+  deleteTask(taskId: string): Observable<any> {
+    const url = `${this.apiUrl}/${taskId}`;
+    return this.http.delete<any>(url, { headers: this.getHeaders() });
   }
 }

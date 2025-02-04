@@ -1,0 +1,25 @@
+/* faq.component.css */
+.faq-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.faq-container h1 {
+  font-size: 2em;
+  color: #333;
+}
+
+.faq-item {
+  margin: 15px 0;
+}
+
+.faq-item h3 {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.faq-item p {
+  font-size: 1.1em;
+  color: #666;
+  margin-top: 5px;
+}

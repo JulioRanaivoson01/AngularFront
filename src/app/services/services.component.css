@@ -1,0 +1,25 @@
+/* services.component.css */
+.services-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.services-container h1 {
+  font-size: 2em;
+  color: #333;
+}
+
+.services-container p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+.services-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.services-container ul li {
+  font-size: 1.1em;
+  margin: 10px 0;
+}

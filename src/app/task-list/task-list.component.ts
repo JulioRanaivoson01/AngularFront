@@ -1,26 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Task } from '../models/task.model';  // Importer l'interface
-import { TaskService } from '../services/task.service';
+import { TaskService } from '../services/task.service';  // Assurez-vous d'importer votre service
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.css']
+  styleUrls: ['./task-list.component.css'],
+  standalone: true,
 })
 export class TaskListComponent implements OnInit {
-  tasks: Task[] = [];
+  tasks: any[] = [];  // Déclaration de la propriété tasks comme tableau vide
 
   constructor(private taskService: TaskService) {}
 
-  ngOnInit(): void {
-    this.loadTasks();
+  ngOnInit() {
+    this.loadTasks();  // Charge les tâches au démarrage du composant
   }
 
-  loadTasks(): void {
-    this.taskService.getTasks().subscribe(data => {
-      this.tasks = data;
-    }, error => {
-      console.error('Erreur lors du chargement des tâches', error);
-    });
+  loadTasks() {
+    const projectId = 'someProjectId';  // Remplacez par l'ID du projet
+    this.taskService.getTasksByProject(projectId).subscribe(
+      (tasks) => {
+        this.tasks = tasks;  // Assurez-vous d'assigner les tâches récupérées à la propriété tasks
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des tâches', error);
+      }
+    );
   }
 }

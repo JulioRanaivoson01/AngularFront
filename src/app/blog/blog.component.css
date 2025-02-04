@@ -1,0 +1,30 @@
+/* blog.component.css */
+.blog-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.blog-container h1 {
+  font-size: 2em;
+  color: #333;
+}
+
+.blog-container p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+.blog-post {
+  margin: 20px 0;
+}
+
+.blog-post h2 {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.blog-post p {
+  font-size: 1.1em;
+  color: #666;
+  margin-top: 5px;
+}

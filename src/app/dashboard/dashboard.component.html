@@ -1,45 +1,65 @@
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Mon Application</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Tableau de bord</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Projets</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Profil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Déconnexion</a>
-        </li>
-      </ul>
-    </div>
+<!-- Barre de navigation -->
+<nav class="navbar">
+  <div class="navbar-container">
+    <a href="#" class="navbar-logo">Mon Ap nnp</a>
+    <ul class="navbar-links">
+      <li><a routerLink="/about">À propos</a></li>
+      <li><a routerLink="/contact">Contact</a></li>
+      <li><a routerLink="/services">Services</a></li>
+      <li><a routerLink="/faq">FAQ</a></li>
+      <li><a routerLink="/blog">Blog</a></li>
+    </ul>
   </div>
 </nav>
 
-<!-- Conteneur principal -->
-<div id="dashboard-container" class="dashboard-container">
-  <!-- Ce contenu sera inséré dynamiquement via TypeScript -->
-</div>
+<!-- Dashboard -->
+<div class="dashboard-container">
+  <!-- Section Ajout de tâche -->
+  <div class="add-task">
+    <h3>Ajouter une Nouvelle Tâche</h3>
+    <div>
+      <label for="taskTitle">Titre :</label>
+      <input id="taskTitle" type="text" (input)="onTitleChange($event)" placeholder="Titre de la tâche" />
+    </div>
+    <div>
+      <label for="taskDesc">Description :</label>
+      <textarea id="taskDesc" (input)="onDescriptionChange($event)" placeholder="Description de la tâche"></textarea>
+    </div>
+    <div>
+      <label for="taskLabel">Étiquette :</label>
+      <select id="taskLabel" (change)="onStatusChange($event)">
+        <option value="red">Rouge</option>
+        <option value="blue">Bleu</option>
+        <option value="green">Vert</option>
+      </select>
+    </div>
+    <div>
+      <label for="taskDueDate">Date d'échéance :</label>
+      <input id="taskDueDate" type="date" (input)="onEndDateChange($event)" />
+    </div>
+    <button id="addTaskButton" (click)="addTask()">Ajouter</button>
+  </div>
 
-<!-- Formulaire pour ajouter une nouvelle tâche -->
-<div class="add-task">
-  <input id="taskTitle" type="text" placeholder="Titre de la tâche" />
-  <input id="taskDesc" type="text" placeholder="Description de la tâche" />
-  <button id="addTaskButton">Ajouter Tâche</button>
+  <!-- Liste des tâches -->
+  <div class="task-list">
+    <div class="task-columns">
+      <!-- Colonne "À Faire" -->
+      <div class="task-column" id="toDoColumn">
+        <h4>À Faire</h4>
+        <div class="task-items-container"></div>
+      </div>
+
+      <!-- Colonne "En Cours" -->
+      <div class="task-column" id="inProgressColumn">
+        <h4>En Cours</h4>
+        <div class="task-items-container"></div>
+      </div>
+
+      <!-- Colonne "Terminé" -->
+      <div class="task-column" id="doneColumn">
+        <h4>Terminé</h4>
+        <div class="task-items-container"></div>
+      </div>
+    </div>
+  </div>
 </div>
